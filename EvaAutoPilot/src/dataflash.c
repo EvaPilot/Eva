@@ -15,6 +15,10 @@
 #include <dataflash.h>
 
 extern int tgtnum;
+extern void AT91F_SpiEnable(int cs);
+extern AT91S_DataFlashStatus AT91F_PageErase(AT91PS_DataFlash pDataFlash, unsigned int page);
+extern AT91S_DataFlashStatus AT91F_DataFlashWaitReady(AT91PS_DataflashDesc pDataFlashDesc, unsigned int timeout);
+extern unsigned int GetTickCount(void);
 
 AT91S_DATAFLASH_INFO dataflash_info[CFG_MAX_DATAFLASH_BANKS];
 static AT91S_DataFlash DataFlashInst;

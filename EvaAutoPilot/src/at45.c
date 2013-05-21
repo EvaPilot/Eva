@@ -17,8 +17,9 @@
 #include <AT91RM9200.h>
 #include <lib_AT91RM9200.h>
 #include <dataflash.h>
-#include <main.h>
+#include "at91.h"
 
+extern unsigned int GetTickCount(void);
 
 //	#define AT91C_SPI_CLK 8000000
 #define AT91C_SPI_CLK 1000000
@@ -242,7 +243,6 @@ AT91S_DataFlashStatus AT91F_DataFlashExtID(AT91PS_DataflashDesc pDesc)
 AT91S_DataFlashStatus AT91F_DataFlashWaitReady(AT91PS_DataflashDesc pDataFlashDesc, unsigned int timeout)
 {
 	volatile unsigned int tick;
-	unsigned int NbTry = 0;
 
 	tick = GetTickCount();
 
@@ -259,19 +259,6 @@ AT91S_DataFlashStatus AT91F_DataFlashWaitReady(AT91PS_DataflashDesc pDataFlashDe
 			return AT91C_DATAFLASH_OK;
 	}
 	while(1);
-
-/*	
-	do
-	{
-		tick = GetTickCount();
-		AT91F_DataFlashGetStatus(pDataFlashDesc);
-		while((pDataFlashDesc->state != IDLE) && (GetTickCount() < (tick + 5)));
-		if((pDataFlashDesc->DataFlash_state & 0x80) == 0x80)
-			return AT91C_DATAFLASH_OK;
-		NbTry++;
-	}
-	while(NbTry < 1000);
-*/
 
 	return AT91C_DATAFLASH_ERROR;
 }

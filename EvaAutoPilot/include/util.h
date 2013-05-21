@@ -1,5 +1,5 @@
 //
-//  at91_iic.h
+//  util.h
 //  EvaAutoPilot
 //
 //  Copyright (c) 2013  www.hexairbot.com. All rights reserved.
@@ -16,20 +16,16 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#ifndef AT91IIC_H
-#define AT91IIC_H
+#ifndef util_h
+#define util_h
 
-#include "AT91RM9200.h"
-#include "lib_AT91RM9200.h"
-  
-#define AT91C_EEPROM_I2C_ADDRESS  	(0x21<<16) 
-#define AT91C_MASTER_CLOCK			59904000
-#define AT91C_EEPROM_READ_OK		0
-#define AT91C_EEPROM_WRITE_OK		0
+void buf2float(float *tfloat, char *buf);
+void buf2float2(float *tfloat, char *buf);
+void buf2long(long *tfloat, char *buf);
+void buf2int(int *tint, char *buf);
+void float2buf(char *buf,float *tfloat);
+void int2buf(char *buf,int *tint);
 
-int AT91F_TWI_Write (const AT91PS_TWI, int, char *, int );
-int AT91F_TWI_Read  (const AT91PS_TWI, int, char *, int );
-void AT91F_SetTwiClock(const AT91PS_TWI pTwi);
-void AT91_IIC_init(void);
+void wait(unsigned int nTick);
 
 #endif

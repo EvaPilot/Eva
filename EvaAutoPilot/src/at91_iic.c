@@ -1,3 +1,22 @@
+//
+//  at91_iic.c
+//  EvaAutoPilot
+//
+//  Copyright (c) 2013  www.hexairbot.com. All rights reserved.
+//
+//  This program is free software; you can redistribute it and/or
+//  modify it under the terms of the GNU General Public License V2
+//  as published by the Free Software Foundation.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+
+
 #include "at91_iic.h"  
 
 int h125 = 125;
@@ -103,7 +122,6 @@ int AT91F_TWI_Write(const AT91PS_TWI pTwi ,int address, char *data2send, int siz
 int AT91F_TWI_Read(const AT91PS_TWI pTwi , int address, char *data, int size)
 {
 	unsigned int status;
-	char tmd;
 	float www;
 	char i;
 	
@@ -118,7 +136,6 @@ int AT91F_TWI_Read(const AT91PS_TWI pTwi , int address, char *data, int size)
 	
 	status = pTwi->TWI_SR;
 		
-//	while (size-- >1)
 	for (i=0;i<2;i++)
 	{
 		
@@ -170,7 +187,7 @@ int AT91F_TWI_Read(const AT91PS_TWI pTwi , int address, char *data, int size)
 }
 
 
-void	AT91_IIC_init(void)
+void AT91_IIC_init(void)
 {
 	AT91F_TWI_CfgPIO ();
 	AT91F_PIO_CfgOpendrain(AT91C_BASE_PIOA, (unsigned int) AT91C_PA25_TWD);
